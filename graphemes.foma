@@ -34,6 +34,7 @@ define cyrGlottalStop ъ ;
 define gGlottalStop latGlottalStop | cyrGlottalStop ;
 define latVowelLengthSign latGlottalStop ; 
 define cyrVowelLengthSign cyrGlottalStop ; 
+define gVowelLengthSign latVowelLengthSign | cyrVowelLengthSign ; 
 define gGOMod %ʻ|%`|%‘ ; 
 define gMod cyrVowelLengthSign | latVowelLengthSign | gGOMod ; 
 

@@ -17,17 +17,17 @@ source graphemes.foma
 
 define g2pMap 
 [a|а|я]: "/a0" | 
-[a latVowelLengthSign | [а|я] cyrVowelLengthSign]: "/aa0" | 
+[a gVowelLengthSign | [а|я] gVowelLengthSign]: "/aa0" | 
 [e|е|э]: "/e0" | 
-[e latVowelLengthSign | е cyrVowelLengthSign]: "/ee0" | 
+[e gVowelLengthSign | е gVowelLengthSign]: "/ee0" | 
 [i|и|ы]: "/i0" | 
-[i latVowelLengthSign | и cyrVowelLengthSign]: "/ii0" | 
+[i gVowelLengthSign | и gVowelLengthSign]: "/ii0" | 
 [o|о|ё]: "/oa0" | 
-[o latVowelLengthSign | [о|ё] cyrVowelLengthSign]: "/ooa0" | 
+[o gVowelLengthSign | [о|ё] gVowelLengthSign]: "/ooa0" | 
 [u|у|ю]: "/u0" | 
-[u latVowelLengthSign | [у|ю] cyrVowelLengthSign]: "/uu0" | 
+[u gVowelLengthSign | [у|ю] gVowelLengthSign]: "/uu0" | 
 [o gGOMod|ў]: "/ou0" | 
-[ў cyrVowelLengthSign]: "/oou0" | 
+[ў gVowelLengthSign]: "/oou0" | 
 [b|б]: "/b" | 
 [p|п]: "/p" | 
 [v|w|в]: "/v" | 
@@ -50,6 +50,7 @@ gJ: "/j" |
 [q|қ]: "/q" | 
 [x|х]: "/xh" | 
 [y|й|"_y"]: "/y" | 
+{tsh}: ["/t" "/sh"] | 
 [{ts}|c|ц]: "/ts" | 
 [{ch}|ч]: "/ch" | 
 [{sh}|ш|щ]: "/sh" | 
