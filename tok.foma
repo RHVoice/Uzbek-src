@@ -1,0 +1,56 @@
+# Copyright (C) 2021  Olga Yakovleva <olga@rhvoice.org>
+
+# This program is free software: you can redistribute it and/or modify
+# it under the terms of the GNU Lesser General Public License as published by
+# the Free Software Foundation, either version 2.1 of the License, or
+# (at your option) any later version.
+
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU Lesser General Public License for more details.
+
+# You should have received a copy of the GNU Lesser General Public License
+# along with this program.  If not, see <https://www.gnu.org/licenses/>.
+
+source graphemes.foma
+source digits.foma
+
+define TagKeyword word | num | lseq | dig | sym ; 
+define Keyword tok | "/tok" | TagKeyword ; 
+
+define tagAs(what, tag, lc, rc) 
+what @-> tok ... tag "/tok" || 
+.#. [[lc] - [?* tok [\"/tok"]*]] _ 
+[rc] .#. ; 
+
+define removeMarkup tok | "/tok" -> 0 ; 
+
+define Word Letter Grapheme* ; 
+
+define LetterSequence [cLetter | [g gGOMod]]+ ; 
+
+define Digit DigitName.u ; 
+define NZDigit Digit - %0 ; 
+define Number Digit+ ; 
+
+define tagWord tagAs(Word, word, ?*, ?*) ; 
+
+define tagLetterSequence tagAs(LetterSequence, lseq, (?* \Grapheme), (\Grapheme ?*)) ; 
+
+define tagNumber tagAs(Number, num, ?*, ?*) ; 
+
+define tagUnknown 
+[..] -> tok sym "/tok" || [.#. | "/tok"] [\tok]+ _  ; 
+
+define Input [\Keyword]+ ; 
+
+define tokenize 
+Input 
+.o. tagLetterSequence 
+.o. tagWord 
+.o. tagNumber  
+.o. tagUnknown 
+.o. removeMarkup ; 
+
+regex tokenize ; 

@@ -1,0 +1,41 @@
+# Copyright (C) 2021  Olga Yakovleva <olga@rhvoice.org>
+
+# This program is free software: you can redistribute it and/or modify
+# it under the terms of the GNU Lesser General Public License as published by
+# the Free Software Foundation, either version 2.1 of the License, or
+# (at your option) any later version.
+
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU Lesser General Public License for more details.
+
+# You should have received a copy of the GNU Lesser General Public License
+# along with this program.  If not, see <https://www.gnu.org/licenses/>.
+
+define cyrVDowncase А:а | Я:я | Е:е | Э:э | Ё:ё | И:и | Ы:ы | О:о | Ў:ў | У:у | Ю:ю ; 
+define cyrCDowncase Б:б | П:п | В:в | Г:г | Ғ:ғ | Д:д | Ж:ж | З:з | К:к | Л:л | М:м | Н:н | Р:р | С:с | Т:т | Ф:ф | Ҳ:ҳ | Қ:қ | Х:х | Й:й | Ц:ц | Ч:ч | Ш:ш | Щ:щ ; 
+define cyrSignDowncase Ъ:ъ | Ь:ь ; 
+define latVDowncase A:a | E:e | I:i | O:o | U:u ; 
+define latCDowncase B:b | P:p | V:v | W:w | G:g | D:d | J:j | Z:z | K:k | L:l | M:m | N:n | R:r | S:s | T:t | F:f | H:h | Q:q | X:x | Y:y | C:c ; 
+
+define vDowncase latVDowncase | cyrVDowncase ; 
+define cDowncase latCDowncase | cyrCDowncase ; 
+define downcase vDowncase | cDowncase | cyrSignDowncase ; 
+define vLetter vDowncase.l | vDowncase.u ; 
+define cLetter cDowncase.l | cDowncase.u ; 
+define Letter vLetter | cLetter ; 
+define cyrSign cyrSignDowncase.l | cyrSignDowncase.u ; 
+
+define gJ [j|ж] ; 
+
+define latGlottalStop %ʼ | %’ | %' ; 
+define cyrGlottalStop ъ ; 
+define gGlottalStop latGlottalStop | cyrGlottalStop ;
+define latVowelLengthSign latGlottalStop ; 
+define cyrVowelLengthSign cyrGlottalStop ; 
+define gGOMod %ʻ|%`|%‘ ; 
+define gMod cyrVowelLengthSign | latVowelLengthSign | gGOMod ; 
+
+define Grapheme Letter | gMod | cyrSign ; 
+define lGrapheme [Grapheme .o. [downcase ->]].l ; 
