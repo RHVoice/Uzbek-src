@@ -1,0 +1,86 @@
+# Copyright (C) 2023  Olga Yakovleva <olga@rhvoice.org>
+
+# This program is free software: you can redistribute it and/or modify
+# it under the terms of the GNU Lesser General Public License as published by
+# the Free Software Foundation, either version 2.1 of the License, or
+# (at your option) any later version.
+
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU Lesser General Public License for more details.
+
+# You should have received a copy of the GNU Lesser General Public License
+# along with this program.  If not, see <https://www.gnu.org/licenses/>.
+
+source digits.foma
+source graphemes.foma
+
+define Whitespace 
+tab:таб | 
+sp:пробел ; 
+
+define Symbol 
+%! : [undov belgisi] | 
+%# : [panjara belgisi] | 
+%% : [foiz] | 
+%& : [ampersand] | 
+%' : [yozuv mashinkasi apostrofi] | 
+%) : [yopiluvchi qavs] | 
+%* : [yulduzcha] | 
+%, : [vergul] | 
+%- : [minus-chiziqcha] | 
+%. : [nuqta] | 
+%/ : [qiya chiziq] | 
+%: : [ikki nuqta] | 
+%; : [nuqtali vergul] | 
+%? : [soʻroq belgisi] | 
+%@ : [at belgisi] | 
+%[ : [ochiluvchi kvadrat qavs] | 
+%\ : [teskari qiya chiziq] | 
+%] : [yopiluvchi kvadrat qavs] | 
+%_ : [pastki chiziqcha] | 
+%{ : [ochiluvchi figurali qavs] | 
+%} : [yopiluvchi figurali qavs] | 
+%$ : [dollar] | 
+%+ : [plus belgisi] | 
+%< : [kichik] | 
+%= : [teng] | 
+%> : [katta] | 
+%^ : [simkumfleks] | 
+%` : [gravis] | 
+%| : [vertikal chiziq] | 
+%~ : [tilda] | 
+%’ : [oʻng apostrof] | 
+%` : [gravis] | 
+%‘ : [chap apostrof] ; 
+
+define VowelName vLetter .o. [downcase ->] ; 
+
+define GeneralConsonantName 
+cLetter .o. 
+[downcase ->] .o. 
+[? [0:э]] ; 
+
+define EXConsonant 
+[N|n|Н|н] ; 
+
+define EXConsonantName 
+EXConsonant .o. 
+[downcase ->] .o. 
+[[0:э] ?] ; 
+
+define ConsonantName EXConsonantName .P. GeneralConsonantName ; 
+
+define SignName 
+[ъ|Ъ] : [ayirish belgisi] | 
+[ʼ%: [tutuq belgisi]] ; 
+
+define LetterName 
+VowelName | 
+ConsonantName | 
+SignName ; 
+
+regex 
+LetterName | DigitName | Whitespace | Symbol ; 
+
