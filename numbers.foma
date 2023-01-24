@@ -134,7 +134,7 @@ SeparateTens  .o.
  PowerOfThousandSymbolsToSingular .o. 
  preTranslate
 .o. RemoveOnes   
- .o.  [%.|%,|wnum] -> zero ... || .#. _   # hack to replace lost zero in front of dec. point
+ .o.  [%.|%,|wnum] -> nol ... || .#. _   # hack to replace lost zero in front of dec. point
 .o. Translate   
 .o. 	[dp:0|dec:0|wnum:0] -> || _ 
  ;

@@ -32,13 +32,19 @@ define LetterSequence [cLetter | [g gGOMod]]+ ;
 
 define Digit DigitName.u ; 
 define NZDigit Digit - %0 ; 
-define Number Digit+ ; 
+define Number NZDigit Digit^<12 ; 
+define Digits Digit+ ; 
+define Zeros %0+ ; 
 
 define tagWord tagAs(Word, word, ?*, ?*) ; 
 
 define tagLetterSequence tagAs(LetterSequence, lseq, (?* \Grapheme), (\Grapheme ?*)) ; 
 
-define tagNumber tagAs(Number, num, ?*, ?*) ; 
+define tagNumber tagAs(Number, num, [0 | [?* \Digit]], [0 | [\Digit ?*]]) ; 
+
+define tagZeros tagAs(Zeros, dig, [0 | [?* \Digit]], ?*) ; 
+
+define tagDigits tagAs(Digits, dig, ?*, ?*) ; 
 
 define tagUnknown 
 [..] -> tok sym "/tok" || [.#. | "/tok"] [\tok]+ _  ; 
@@ -49,7 +55,9 @@ define tokenize
 Input 
 .o. tagLetterSequence 
 .o. tagWord 
+.o. tagZeros 
 .o. tagNumber  
+.o. tagDigits 
 .o. tagUnknown 
 .o. removeMarkup ; 
 
