@@ -30,7 +30,9 @@ define mapGraphemes
 g2pMap @-> ; 
 
 define checkGlottalStops 
-Consonant "/gs" Vowel @-> ,, "/gs" @-> 0 ; 
+"/gs" -> 0 || 
+[.#. | [\Consonant] | "/gs"] _ , 
+  _ [.#. | [\Vowel]] ; 
 
 define g2pRules 
 Word 
