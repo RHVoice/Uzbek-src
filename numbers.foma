@@ -1,4 +1,5 @@
 
+source graphemes.foma;
 define Unit 
 %0:"nol" |
 1:"bir" |
@@ -33,6 +34,40 @@ define Ten
 8:"sakson" |
 9:"to'qson" ;
 
+define OrdUnit 
+%0:"nolinchi" |
+1:"birinchi" |
+2:"ikkinchi" |
+3:"uchinchi" |
+4:"to'rtinchi" |
+5:"beshinchi" |
+6:"oltinchi" |
+7:"yettinchi" |
+8:"sakkizinchi" |
+9:"to'qqizinchi" ;
+
+define OrdTeen 
+1:["o'n" "birinchi"] |
+2:["o'n" "ikkinchi"] |
+3:["o'n" "uchinchi"] |
+4:["o'n" "to'rtinchi"] |
+5:["o'n" "beshinchi"] |
+6:["o'n" "oltinchi"] |
+7:["o'n" "yettinchi"] |
+8:["o'n" "sakkizinchi"] |
+9:["o'n" "to'qqizinchi"] ;
+
+define OrdTen 
+1:"o'ninchi" |
+2:"yigirmanchi" |
+3:"o'ttizinchi" |
+4:"qirqinchi" |
+5:"ellikinchi" |
+6:"oltmishinchi" |
+7:"yetmishinchi" |
+8:"saksoninchi" |
+9:"to'qsoninchi" ;
+
 define TenOrHundredSymbol ten|hnd ; 
 
 
@@ -45,14 +80,15 @@ define UnformattedNumber %0 | [NZDigit Digit^<15] ;
 define FormattedNumber NZDigit Digit^<3 [%. Digit^3]^{1,4} ; 
 define RegularDecimal [FormattedNumber|UnformattedNumber] %, Digit+;   #  3.000.320(,022)
 define ForeignDecimal UnformattedNumber %. [Digit^<3 | Digit^>3];   # foreign DP 1.02
-define ArabicNumber UnformattedNumber | FormattedNumber | RegularDecimal | ForeignDecimal;
+define Ordinal	[FormattedNumber|UnformattedNumber]  OrdSuffix ;   #  number (has to be without commas) followed by ordinal marker
+define ArabicNumber UnformattedNumber | FormattedNumber | RegularDecimal | ForeignDecimal | Ordinal;
 
 # tag valid numbers
 define tagNumberTypes 
   [FormattedNumber|UnformattedNumber] @-> ... wnum || .#. _ (%, Digit+)  .#. ,,  #  3.000.320(,022)
   # UnformattedNumber @-> ... wnum || .#. _ (%. Digit+)  .#.  ,,   # foreign DP 1.02
-  UnformattedNumber @-> ... wnum || .#. _ (%. [Digit^{1,2} | Digit^>3])  .#. ;     # foreign DP 1.02
-#  [FormattedNumber|UnformattedNumber] @-> ... wnum ord || .#. _ [%. | OrdSuffix] .#. ;   #  number (has to be without commas) followed by ordinal marker
+  UnformattedNumber @-> ... wnum || .#. _ (%. [Digit^{1,2} | Digit^>3])  .#. ,,     # foreign DP 1.02
+  [FormattedNumber|UnformattedNumber] @-> ... wnum ord || .#. _  OrdSuffix .#. ;   #  number (has to be without commas) followed by ordinal marker
 
 # We expect this code to be protected from strings contain other than digits, commas and periods.
 # We will, however, catch non-numbers which has slipped through, like  20.0.1  or 20,11,111
@@ -99,7 +135,21 @@ define MarkTeens [[1 ten]:0] NZDigit [0:[teen %0]] -> ;
 define InsertAnds [..] -> and || 
  [.#.|dp] \dp+ _ NZDigit [ [PowerOfThousandSymbol|hnd|teen|ten] %0]* [PowerOfThousandSymbol|hnd|teen|ten|wnum]  ; # puts a single 'and', before the last non-zero element
 
-define RemoveOnes 1 -> 0 || .#. _ thn ; 
+# define RemoveOnes 1 -> 0 || .#. _ thn ; 
+
+define processOrdinals 
+ [
+ OrdUnit ->  ||  _ wnum ord OrdSuffix .#. ,,
+ [OrdTeen teen:0] ->  ||  _ wnum ord OrdSuffix .#. ,,
+ [OrdTen ten:0] ->  ||  _ wnum ord OrdSuffix .#. 
+  ];
+
+
+define processFinalOrdinals 
+ [yuz:yuzinchi | ming:minginchi | million:millioninchi | milliard:milliarininchi | trilliard:trilliarininchi] ->  ||  _ wnum ord OrdSuffix .#. 
+	.o.  [ord OrdSuffix]:0 -> || _ .#.; 
+
+
 
 
 define Translate [ 
@@ -133,10 +183,12 @@ SeparateTens  .o.
    .o.  RemoveZeros  .o. 
  PowerOfThousandSymbolsToSingular .o. 
  preTranslate
-.o. RemoveOnes   
+# .o. RemoveOnes   
+ .o. processOrdinals
  .o.  [%.|%,|wnum] -> nol ... || .#. _   # hack to replace lost zero in front of dec. point
-.o. Translate   
-.o. 	[dp:0|dec:0|wnum:0] -> || _ 
+ .o. Translate   
+.o. processFinalOrdinals
+ .o. 	[dp:0|dec:0|wnum:0] -> || _ 
  ;
 	
 
