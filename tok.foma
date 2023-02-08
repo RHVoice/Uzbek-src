@@ -35,6 +35,7 @@ define NZDigit Digit - %0 ;
 define Number NZDigit Digit^<12 ; 
 define Digits Digit+ ; 
 define Zeros %0+ ; 
+define OrdNumber Number OrdSuffix ; 
 
 define tagWord tagAs(Word, word, ?*, ?*) ; 
 
@@ -42,12 +43,15 @@ define tagLetterSequence tagAs(LetterSequence, lseq, (?* \Grapheme), (\Grapheme 
 
 define tagNumber tagAs(Number, num, [0 | [?* \Digit]], [0 | [\Digit ?*]]) ; 
 
+define tagOrdNumber 
+tagAs(OrdNumber, num, [[\[Letter | Digit]]*], [(tok) Letter ?*]) ; 
+
 define tagZeros tagAs(Zeros, dig, [0 | [?* \Digit]], ?*) ; 
 
 define tagDigits tagAs(Digits, dig, ?*, ?*) ; 
 
 define tagUnknown 
-[..] -> tok sym "/tok" || [.#. | "/tok"] [\tok]+ _  ; 
+tagAs(\[Letter | Digit | Keyword], sym, ?*, ?*) ; 
 
 define Input [\Keyword]+ ; 
 
@@ -56,6 +60,7 @@ Input
 .o. tagLetterSequence 
 .o. tagWord 
 .o. tagZeros 
+.o. tagOrdNumber 
 .o. tagNumber  
 .o. tagDigits 
 .o. tagUnknown 
