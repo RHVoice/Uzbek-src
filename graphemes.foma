@@ -13,6 +13,8 @@
 # You should have received a copy of the GNU Lesser General Public License
 # along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
+define OrdSuffix %-;
+
 define cyrVDowncase А:а | Я:я | Е:е | Э:э | Ё:ё | И:и | Ы:ы | О:о | Ў:ў | У:у | Ю:ю ; 
 define cyrCDowncase Б:б | П:п | В:в | Г:г | Ғ:ғ | Д:д | Ж:ж | З:з | К:к | Л:л | М:м | Н:н | Р:р | С:с | Т:т | Ф:ф | Ҳ:ҳ | Қ:қ | Х:х | Й:й | Ц:ц | Ч:ч | Ш:ш | Щ:щ ; 
 define cyrSignDowncase Ъ:ъ | Ь:ь ; 
