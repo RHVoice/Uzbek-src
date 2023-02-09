@@ -1,5 +1,5 @@
 
-source graphemes.foma;
+source graphemes.foma
 define Unit 
 %0:"nol" |
 1:"bir" |
