@@ -23,7 +23,7 @@ define g2pMap
 [i|и|ы]: "/i0" | 
 [i gVowelLengthSign | и gVowelLengthSign]: "/ii0" | 
 [o|о|ё]: "/oa0" | 
-[o gVowelLengthSign | [о|ё] gVowelLengthSign]: "/ooa0" | 
+[[о|ё] gVowelLengthSign]: "/ooa0" | 
 [u|у|ю]: "/u0" | 
 [u gVowelLengthSign | [у|ю] gVowelLengthSign]: "/uu0" | 
 [o gGOMod|ў]: "/ou0" | 
@@ -54,6 +54,6 @@ gJ: "/j" |
 [{ts}|c|ц]: "/ts" | 
 [{ch}|ч]: "/ch" | 
 [{sh}|ш|щ]: "/sh" | 
-[gGOMod|ь] : 0 | 
+[ь] : 0 | 
 gGlottalStop: "/gs" ; 
 

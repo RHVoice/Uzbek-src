@@ -31,13 +31,15 @@ define cyrSign cyrSignDowncase.l | cyrSignDowncase.u ;
 
 define gJ [j|ж] ; 
 
-define latGlottalStop %ʼ | %’ | %' ; 
+define apos %’ | %‘ | %' | %` | %ʼ | %ʻ ; 
+
+define latGlottalStop apos ; 
 define cyrGlottalStop ъ ; 
 define gGlottalStop latGlottalStop | cyrGlottalStop ;
 define latVowelLengthSign latGlottalStop ; 
 define cyrVowelLengthSign cyrGlottalStop ; 
 define gVowelLengthSign latVowelLengthSign | cyrVowelLengthSign ; 
-define gGOMod %ʻ|%`|%‘ ; 
+define gGOMod apos ; 
 define gMod cyrVowelLengthSign | latVowelLengthSign | gGOMod ; 
 
 define Grapheme Letter | gMod | cyrSign ; 
