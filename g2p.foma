@@ -34,11 +34,26 @@ define checkGlottalStops
 [.#. | [\Consonant] | "/gs"] _ , 
   _ [.#. | [\Vowel]] ; 
 
+define BackToFrontI 
+["/iy0" : "/i0"] | ["/iiy0" : "/ii0"] ; 
+
+
+define InitialIRule 
+BackToFrontI -> || .#. | "/gs" _ ; 
+
+define IWithVowelRule 
+BackToFrontI -> || Vowel _ , _ Vowel ; 
+
+define IRules 
+InitialIRule 
+.o. IWithVowelRule ; 
+
 define g2pRules 
 Word 
 .o. markFricativeJGrapheme 
 .o. markYVowelLetters 
 .o. mapGraphemes 
-.o. checkGlottalStops ; 
+.o. checkGlottalStops  
+.o. IRules ; 
 
 regex g2pRules ; 

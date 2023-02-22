@@ -17,6 +17,7 @@ define LongToShortVowelMap
 ["/aa0" : "/a0"] | 
 ["/ee0" : "/e0"] | 
 ["/ii0" : "/i0"] | 
+["/iiy0" : "/iy0"] | 
 ["/ooa0" : "/oa0"] | 
 ["/oou0" : "/ou0"] | 
 ["/uu0" : "/u0"] ; 

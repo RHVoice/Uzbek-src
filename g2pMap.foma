@@ -20,8 +20,8 @@ define g2pMap
 [a gVowelLengthSign | [а|я] gVowelLengthSign]: "/aa0" | 
 [e|е|э]: "/e0" | 
 [e gVowelLengthSign | е gVowelLengthSign]: "/ee0" | 
-[i|и|ы]: "/i0" | 
-[i gVowelLengthSign | и gVowelLengthSign]: "/ii0" | 
+[i|и|ы]: "/iy0" | 
+[i gVowelLengthSign | и gVowelLengthSign]: "/iiy0" | 
 [o|о|ё]: "/oa0" | 
 [[о|ё] gVowelLengthSign]: "/ooa0" | 
 [u|у|ю]: "/u0" | 
