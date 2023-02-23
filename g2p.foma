@@ -37,16 +37,23 @@ define checkGlottalStops
 define BackToFrontI 
 ["/iy0" : "/i0"] | ["/iiy0" : "/ii0"] ; 
 
-
 define InitialIRule 
 BackToFrontI -> || .#. | "/gs" _ ; 
 
 define IWithVowelRule 
 BackToFrontI -> || Vowel _ , _ Vowel ; 
 
+define IKRule 
+BackToFrontI -> || _ "/k" ; 
+
+define IYRule 
+BackToFrontI -> || _ "/y" ; 
+
 define IRules 
 InitialIRule 
-.o. IWithVowelRule ; 
+.o. IWithVowelRule 
+.o.  IKRule 
+.o. IYRule ; 
 
 define g2pRules 
 Word 
