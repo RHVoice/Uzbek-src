@@ -49,11 +49,49 @@ BackToFrontI -> || _ "/k" ;
 define IYRule 
 BackToFrontI -> || _ "/y" ; 
 
+define SameConsonantsRule 
+BackToFrontI -> || 
+"/b" _ "/b", 
+"/ch" _ "/ch", 
+"/d" _ "/d", 
+"/f" _ "/f", 
+"/g" _ "/g", 
+"/gh" _ "/gh", 
+"/h" _ "/h", 
+"/j" _ "/j", 
+"/k" _ "/k", 
+"/l" _ "/l", 
+"/m" _ "/m", 
+"/n" _ "/n", 
+"/ng" _ "/ng", 
+"/p" _ "/p", 
+"/q" _ "/q", 
+"/r" _ "/r", 
+"/s" _ "/s", 
+"/sh" _ "/sh", 
+"/t" _ "/t", 
+"/ts" _ "/ts", 
+"/v" _ "/v", 
+"/xh" _ "/xh", 
+"/y" _ "/y", 
+"/zh" _ "/zh" ; 
+
+define IngRule 
+BackToFrontI -> || _ "/ng" ; 
+
+define HRule 
+BackToFrontI -> || 
+.#. [\Vowel]* "/h" _ ?* Vowel , 
+.#. [\Vowel]* Vowel [\Vowel]* "/h" _ ?* Vowel ; 
+
 define IRules 
 InitialIRule 
 .o. IWithVowelRule 
 .o.  IKRule 
-.o. IYRule ; 
+.o. IngRule 
+.o. IYRule  
+.o. HRule 
+.o. SameConsonantsRule ; 
 
 define g2pRules 
 Word 
