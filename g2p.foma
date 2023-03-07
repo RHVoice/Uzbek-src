@@ -17,7 +17,9 @@ source g2pMap.foma
 source fricativeJWords.foma
 source phonemes.foma
 
-define Word lGrapheme+ ; 
+define specialSymbol "~" ; 
+
+define Word [lGrapheme | specialSymbol]+ ; 
 
 define markYVowelLetters 
 [..] -> "_y" || .#. | vLetter _ е , _ [ё|ю|я] ; 
@@ -28,6 +30,9 @@ define markFricativeJGrapheme
 
 define mapGraphemes 
 g2pMap @-> ; 
+
+define CleanupSpecialSymbols 
+specialSymbol -> 0 ; 
 
 define checkGlottalStops 
 "/gs" -> 0 || 
@@ -98,6 +103,7 @@ Word
 .o. markFricativeJGrapheme 
 .o. markYVowelLetters 
 .o. mapGraphemes 
+.o. CleanupSpecialSymbols 
 .o. checkGlottalStops  
 .o. IRules ; 
 
