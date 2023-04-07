@@ -89,6 +89,18 @@ BackToFrontI -> ||
 .#. [\Vowel]* "/h" _ ?* Vowel , 
 .#. [\Vowel]* Vowel [\Vowel]* "/h" _ ?* Vowel ; 
 
+define TaMaRule 
+BackToFrontI -> 
+|| .#. ["/t" | "/m"] "/a0" Consonant Consonant _ Consonant ; 
+
+define GinaRule 
+BackToFrontI -> || 
+"/g" _ "/n" "/a0" .#. ; 
+
+define YigRule 
+BackToFrontI -> || 
+"/y" _ "/g" ; 
+
 define IRules 
 InitialIRule 
 .o. IWithVowelRule 
@@ -96,7 +108,10 @@ InitialIRule
 .o. IngRule 
 .o. IYRule  
 .o. HRule 
-.o. SameConsonantsRule ; 
+.o. SameConsonantsRule 
+.o. TaMaRule  
+.o. GinaRule  
+.o. YigRule ; 
 
 define g2pRules 
 Word 
