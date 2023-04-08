@@ -13,7 +13,7 @@
 # You should have received a copy of the GNU Lesser General Public License
 # along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
-define Vowel "/a0" | "/aa0" | "/e0" | "/ee0" | "/i0" | "/ii0" | "/iy0" | "/iiy0" |  "/oa0" | "/ooa0" | "/ou0" | "/oou0" | "/u0" | "/uu0" ; 
+define Vowel "/a0" | "/aa0" | "/e0" | "/ee0" | "/i0" | "/ii0" | "/iy0" | "/iiy0" |  "/oa0" | "/ooa0" | "/ou0" | "/oou0" | "/u0" | "/uu0" | "/i?" | "/ii?" ; 
 
 define Consonant "/b" | "/p" | "/v" | "/gh" | "/g" | "/d" | "/j" | "/zh" | "/z" | "/k" | "/l" | "/m" | "/n" | "/ng" | "/r" | "/s" | "/t" | "/f" | "/h" | "/q" | "/xh" | "/y" | "/ts" | "/ch" | "/sh" | "/gs" ; 
 

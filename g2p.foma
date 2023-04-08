@@ -17,7 +17,7 @@ source g2pMap.foma
 source fricativeJWords.foma
 source phonemes.foma
 
-define specialSymbol "~" ; 
+define specialSymbol "~" | "^" ; 
 
 define Word [lGrapheme | specialSymbol]+ ; 
 
@@ -40,7 +40,10 @@ define checkGlottalStops
   _ [.#. | [\Vowel]] ; 
 
 define BackToFrontI 
-["/iy0" : "/i0"] | ["/iiy0" : "/ii0"] ; 
+["/i?" : "/i0"] | ["/ii?" : "/ii0"] ; 
+
+define DefaultIRule 
+["/i?" : "/iy0" | "/ii?" : "/iiy0"] -> ; 
 
 define InitialIRule 
 BackToFrontI -> || .#. | "/gs" _ ; 
@@ -111,10 +114,15 @@ InitialIRule
 .o. SameConsonantsRule 
 .o. TaMaRule  
 .o. GinaRule  
-.o. YigRule ; 
+.o. YigRule  
+.o. DefaultIRule ; 
+
+define MarkJFromDict 
+"~" -> "_zh" || gJ _ ; 
 
 define g2pRules 
 Word 
+.o. MarkJFromDict 
 .o. markFricativeJGrapheme 
 .o. markYVowelLetters 
 .o. mapGraphemes 

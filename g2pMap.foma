@@ -21,8 +21,9 @@ define g2pMap
 [e|е|э]: "/e0" | 
 [e gVowelLengthSign | е gVowelLengthSign]: "/ee0" | 
 [[i | и] "~"] : "/i0" | 
-[i|и|ы]: "/iy0" | 
-[i gVowelLengthSign | и gVowelLengthSign]: "/iiy0" | 
+[[i | и] "^"] : "/iy0" | 
+[i|и|ы]: "/i?" | 
+[i gVowelLengthSign | и gVowelLengthSign]: "/ii?" | 
 [o|о|ё]: "/oa0" | 
 [[о|ё] gVowelLengthSign]: "/ooa0" | 
 [u|у|ю]: "/u0" | 
