@@ -135,7 +135,7 @@ define MarkTeens [[1 ten]:0] NZDigit [0:[teen %0]] -> ;
 define InsertAnds [..] -> and || 
  [.#.|dp] \dp+ _ NZDigit [ [PowerOfThousandSymbol|hnd|teen|ten] %0]* [PowerOfThousandSymbol|hnd|teen|ten|wnum]  ; # puts a single 'and', before the last non-zero element
 
-define RemoveOnes 1 -> 0 || .#. _ thn ; 
+define RemoveBirMing 1 -> 0 || .#. _ thn wnum ; 
 
 define processOrdinals 
  [
@@ -183,7 +183,7 @@ SeparateTens  .o.
    .o.  RemoveZeros  .o. 
  PowerOfThousandSymbolsToSingular .o. 
  preTranslate
- .o. RemoveOnes   
+ .o. RemoveBirMing   
  .o. processOrdinals
  .o.  [%.|%,|wnum] -> nol ... || .#. _   # hack to replace lost zero in front of dec. point
  .o. Translate   
