@@ -16,8 +16,7 @@
 source g2pMap.foma
 source phonemes.foma
 
-define EXConsonant "/n" | "/ng" ; 
-define XEConsonant Consonant - [EXConsonant | "/gs"] ; 
+define XEConsonant Consonant - ["/gs"] ; 
 
 define insertE 
 XEConsonant -> ... "/e0", 

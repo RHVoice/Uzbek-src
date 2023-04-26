@@ -57,20 +57,58 @@ define Symbol
 
 define VowelName vLetter .o. [downcase ->] ; 
 
-define GeneralConsonantName 
+define lcConsonantName 
+[b: "be"] | 
+[p: "pe"] | 
+[v: "ve"] | 
+[w: "we"] | 
+[g: "ge"] | 
+[d: "de"] | 
+[j: "je"] | 
+[z: "ze"] | 
+[k: "ke"] | 
+[l: "le"] | 
+[m: "me"] | 
+[n: "ne"] | 
+[r: "re"] | 
+[s: "se"] | 
+[t: "te"] | 
+[f: "fe"] | 
+[h: "he"] | 
+[q: "qe"] | 
+[x: "xe"] | 
+[y: "ye"] | 
+[c: "ce"] | 
+[б: "бe"] | 
+[п: "пe"] | 
+[в: "вe"] | 
+[г: "гe"] | 
+[ғ: "ғe"] | 
+[д: "дe"] | 
+[ж: "жe"] | 
+[з: "зe"] | 
+[к: "кe"] | 
+[л: "лe"] | 
+[м: "мe"] | 
+[н: "нe"] | 
+[р: "рe"] | 
+[с: "сe"] | 
+[т: "тe"] | 
+[ф: "фe"] | 
+[ҳ: "ҳe"] | 
+[қ: "қe"] | 
+[х: "хe"] | 
+[й: "йe"] | 
+[ц: "цe"] | 
+[ч: "чe"] | 
+[ш: "шe"] | 
+[щ: "щe"] ; 
+
+define ConsonantName 
 cLetter .o. 
 [downcase ->] .o. 
-[? [0:э]] ; 
+[lcConsonantName -> ] ; 
 
-define EXConsonant 
-[N|n|Н|н] ; 
-
-define EXConsonantName 
-EXConsonant .o. 
-[downcase ->] .o. 
-[[0:э] ?] ; 
-
-define ConsonantName EXConsonantName .P. GeneralConsonantName ; 
 
 define SignName 
 [ъ|Ъ] : [ayirish belgisi] | 
