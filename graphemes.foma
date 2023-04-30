@@ -30,6 +30,8 @@ define Letter vLetter | cLetter ;
 define cyrSign cyrSignDowncase.l | cyrSignDowncase.u ; 
 
 define gJ [j|ж] ; 
+define gG [g | г] ; 
+define gK [k | к] ; 
 
 define apos %’ | %‘ | %' | %` | %ʼ | %ʻ ; 
 

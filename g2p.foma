@@ -52,7 +52,7 @@ define IWithVowelRule
 BackToFrontI -> || Vowel _ , _ Vowel ; 
 
 define IKRule 
-BackToFrontI -> || _ "/k" ; 
+BackToFrontI -> || _ pK ; 
 
 define IYRule 
 BackToFrontI -> || _ "/y" ; 
@@ -63,11 +63,11 @@ BackToFrontI -> ||
 "/ch" _ "/ch", 
 "/d" _ "/d", 
 "/f" _ "/f", 
-"/g" _ "/g", 
+pG _ pG, 
 "/gh" _ "/gh", 
 "/h" _ "/h", 
 "/j" _ "/j", 
-"/k" _ "/k", 
+pK _ pK, 
 "/l" _ "/l", 
 "/m" _ "/m", 
 "/n" _ "/n", 
@@ -98,11 +98,11 @@ BackToFrontI ->
 
 define GinaRule 
 BackToFrontI -> || 
-"/g" _ "/n" "/a0" .#. ; 
+pG _ "/n" "/a0" .#. ; 
 
 define YigRule 
 BackToFrontI -> || 
-"/y" _ "/g" ; 
+"/y" _ pG ; 
 
 define IRules 
 InitialIRule 
@@ -120,6 +120,16 @@ InitialIRule
 define MarkJFromDict 
 "~" -> "_zh" || gJ _ ; 
 
+define DefaultKGRule 
+["/g?": "/g" | "/k?": "/k"] -> ; 
+
+define FrontKGRule 
+["/g?": "/gj" | "/k?": "/kj"] -> || _ FrontVowel | .#. ; 
+
+define KGRules 
+FrontKGRule 
+.o. DefaultKGRule ; 
+
 define g2pRules 
 Word 
 .o. MarkJFromDict 
@@ -128,6 +138,7 @@ Word
 .o. mapGraphemes 
 .o. CleanupSpecialSymbols 
 .o. checkGlottalStops  
-.o. IRules ; 
+.o. IRules 
+.o. KGRules ; 
 
 regex g2pRules ; 
