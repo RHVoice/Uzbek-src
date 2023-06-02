@@ -6,6 +6,6 @@ This repository contains the sourse code. You can find the compiled version {her
 
 ## License
 
-# Copyright (C) 2023 Non-Routine LLC
+Copyright (C) 2023 Non-Routine LLC.
 
 This code is licensed under LGPL version 2.1 or later.
