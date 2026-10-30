@@ -83,7 +83,7 @@ define lcConsonantName
 [п: "пe"] | 
 [в: "вe"] | 
 [г: "гe"] | 
-[ғ: "ғe"] | 
+[[ғ | ğ]: "ғe"] | 
 [д: "дe"] | 
 [ж: "жe"] | 
 [з: "зe"] | 
@@ -100,9 +100,9 @@ define lcConsonantName
 [х: "хe"] | 
 [й: "йe"] | 
 [ц: "цe"] | 
-[ч: "чe"] | 
+[[ч | ç]: "чe"] | 
 [ш: "шe"] | 
-[щ: "щe"] ; 
+[[щ | ş]: "щe"] ; 
 
 define ConsonantName 
 cLetter .o. 
