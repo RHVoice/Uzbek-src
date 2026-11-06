@@ -28,22 +28,18 @@ define g2pMap
 [[о|ё] gVowelLengthSign]: "/ooa0" | 
 [u|у|ю]: "/u0" | 
 [u gVowelLengthSign | [у|ю] gVowelLengthSign]: "/uu0" | 
-[o gGOMod|ў]: "/ou0" | 
+[o gGOMod|ў | ö]: "/ou0" | 
 [ў gVowelLengthSign]: "/oou0" | 
 [b|б]: "/b" | 
 [p|п]: "/p" | 
 [v|w|в]: "/v" | 
-[g gGOMod | ғ]: "/gh" | 
-[gG "~"]: "/gj" | 
-[gG "^"]: "/g" | 
-gG: "/g?" | 
+[g gGOMod | ғ | ğ]: "/gh" | 
+[g|г]: "/g" | 
 [d|д]: "/d" | 
 gJ: "/j" | 
 [gJ "_zh"]: "/zh" | 
 [z|з]: "/z" | 
-[gK "~"]: "/kj" | 
-[gK "^"]: "/k" | 
-gK: "/k?" | 
+[k|к]: "/k" | 
 [l|л]: "/l" | 
 [m|м]: "/m" | 
 [n|н]: "/n" | 
@@ -58,8 +54,8 @@ gK: "/k?" |
 [y|й|"_y"]: "/y" | 
 {tsh}: ["/t" "/sh"] | 
 [{ts}|c|ц]: "/ts" | 
-[{ch}|ч]: "/ch" | 
-[{sh}|ш|щ]: "/sh" | 
+[{ch}|ч|ç]: "/ch" | 
+[{sh}|ш|щ|ş]: "/sh" | 
 [ь] : 0 | 
 gGlottalStop: "/gs" ; 
 
